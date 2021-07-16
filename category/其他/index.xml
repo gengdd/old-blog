@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>其他 | GDD</title>
+    <link>https://gengdd2018.github.io/category/%E5%85%B6%E4%BB%96/</link>
+      <atom:link href="https://gengdd2018.github.io/category/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml" />
+    <description>其他</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Fri, 16 Jul 2021 22:34:36 +0800</lastBuildDate>
+    <image>
+      <url>https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
+      <title>其他</title>
+      <link>https://gengdd2018.github.io/category/%E5%85%B6%E4%BB%96/</link>
+    </image>
+    
+    <item>
+      <title>新博客试用</title>
+      <link>https://gengdd2018.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</link>
+      <pubDate>Fri, 16 Jul 2021 22:34:36 +0800</pubDate>
+      <guid>https://gengdd2018.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</guid>
+      <description>&lt;h2 id=&#34;公式&#34;&gt;公式&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;内联公式$\frac{1}{2}+\frac{1}{2} = 1$&lt;/li&gt;
+&lt;li&gt;公式块&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\frac{1}{2}+\frac{1}{2}=1
+$$&lt;/p&gt;
+&lt;h2 id=&#34;图片&#34;&gt;图片&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsj64c3lgkj31hk0syjuz.jpg&#34; alt=&#34;image-20210716223911416&#34; style=&#34;zoom:25%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pdf&#34;&gt;PDF&lt;/h2&gt;
+&lt;a href=&#34;https://gengdd2018.github.io/uploads/TIST0603-29%20-%20TrajectoryDataMining-tist-yuzheng_published.pdf&#34; target=&#34;_blank&#34;&gt;轨迹数据挖掘概述&lt;/a&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
