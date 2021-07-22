@@ -1,0 +1,1478 @@
+<!DOCTYPE html><html lang="zh" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Dongdong Geng" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="轨迹数据挖掘:概述" />
+
+  
+  <link rel="alternate" hreflang="zh" href="https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?45fb2fbf513074ab942cb6db74c7e8ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="GDD" />
+  <meta property="og:url" content="https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/" />
+  <meta property="og:title" content="轨迹数据挖掘:概述 | GDD" />
+  <meta property="og:description" content="轨迹数据挖掘:概述" /><meta property="og:image" content="https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="zh" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-07-22T23:39:49&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-07-22T23:39:49&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/"
+  },
+  "headline": "轨迹数据挖掘:概述",
+  
+  "datePublished": "2021-07-22T23:39:49+08:00",
+  "dateModified": "2021-07-22T23:39:49+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Dongdong Geng"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "GDD",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "轨迹数据挖掘:概述"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>轨迹数据挖掘:概述 | GDD</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="b515f2e735eb5986f3668a44cb7278c5" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>轨迹数据挖掘:概述</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Dongdong Geng</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 22, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+<a class="btn btn-outline-primary btn-page-header" href="/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98:%E6%A6%82%E8%BF%B0.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="轨迹数据挖掘范式">轨迹数据挖掘范式</h2>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4yeellrj30s20mwn1g.jpg" alt="image-20210707184333618" style="zoom:35%;" /></p>
+<h2 id="轨迹数据">轨迹数据</h2>
+<p>分类:</p>
+<ul>
+<li>人的移动
+<ul>
+<li>主动记录</li>
+<li>被动记录</li>
+</ul>
+</li>
+<li>运输车辆的移动：资源分配、交通分析、交通网络改善</li>
+<li>动物的移动</li>
+<li>自然现象的移动</li>
+</ul>
+<h2 id="轨迹数据处理">轨迹数据处理</h2>
+<h3 id="噪声滤波">噪声滤波</h3>
+<ol>
+<li>均值(中位数)滤波
+<ul>
+<li>在处理极端误差时，中值滤波比均值滤波具有更强的鲁棒性</li>
+<li>当处理多个连续噪声点时，需要更大尺寸的滑动窗口</li>
+<li>当轨迹采样率很低时，均值滤波器和中值滤波器不再是很好的选择</li>
+</ul>
+</li>
+<li>卡尔曼(粒子)滤波
+<ul>
+<li>卡尔曼滤波器通过假设线性模型加上高斯噪声来提高效率，而粒子滤波器则放宽了这些假设</li>
+<li>如果轨迹上的第一个点是有噪声的，两个滤波器的有效性显著下降</li>
+</ul>
+</li>
+<li>基于启发式的异常点检测
+<ul>
+<li>通过使用离群点检测算法直接从轨迹中去除噪声点</li>
+<li>基于距离的异常检测</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4ykou8yj30ik08uwew.jpg" alt="image-20210707194302669" style="zoom:30%;" /></p>
+<h3 id="驻留点检测">驻留点检测</h3>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4ymhuo0j30qi09a75h.jpg" alt="image-20210707194622759" style="zoom:33%;" /></p>
+<ol>
+<li>单点位置
+<ul>
+<li>这种情况是非常罕见的，因为用户的定位设备通常产生不同的读数，即使在同一位置</li>
+</ul>
+</li>
+<li>人们走动，或保持静止但定位读数会四处移动</li>
+</ol>
+<blockquote>
+<p>文献：</p>
+<p>[1] Mining user similarity based on location history</p>
+</blockquote>
+<h3 id="轨迹压缩">轨迹压缩</h3>
+<ol>
+<li>离线压缩(即批处理模式):通过从原始轨迹中剔除一些误差可以忽略的点来生成近似轨迹
+<ul>
+<li>Douglas-Peucke($N^2$)</li>
+<li>($N\log N$)(Speeding up the Douglas-Peucker line simplification algorithm)</li>
+<li>Bellman’s algorithm($N^3$)</li>
+</ul>
+</li>
+<li>在线压缩:即在物体运动时立即压缩轨迹
+<ul>
+<li>基于窗口的算法
+<ul>
+<li>Sliding Window Algorithm</li>
+<li>Open Window Algorithm</li>
+</ul>
+</li>
+<li>基于移动物体的速度和方向</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4yph24fj30wm0im0vp.jpg" alt="image-20210707200654592" style="zoom:30%;" /></p>
+<ol start="3">
+<li>轨迹语义压缩
+<ul>
+<li>Trajectory Simplification (TS) algorithm</li>
+</ul>
+</li>
+<li>考虑受交通网络约束的轨迹压缩
+<ul>
+<li>PRESS(PRESS: A novel framework of trajectory compression in roadnetworks)</li>
+</ul>
+</li>
+</ol>
+<p>两个距离度量度量压缩的误差：</p>
+<ol>
+<li>垂直欧式距离</li>
+<li>时间同步欧式距离</li>
+</ol>
+<h3 id="轨迹分割">轨迹分割</h3>
+<ol>
+<li>基于时间间隔</li>
+<li>基于轨迹的形状
+<ul>
+<li>Minimal Description Language (MDL)</li>
+</ul>
+</li>
+<li>基于轨迹中点的语义意义
+<ul>
+<li>将轨迹划分为不同运输方式的分段</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4yslomej30me0bkt9z.jpg" alt="image-20210707204634976" style="zoom:35%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4yvez0sj30ls0futa6.jpg" alt="image-20210707214507726" style="zoom:33%;" /></p>
+<h3 id="地图匹配">地图匹配</h3>
+<p>根据所使用的附加信息，地图匹配算法可以分为四类：</p>
+<ol>
+<li>几何
+<ul>
+<li>几何地图匹配算法考虑道路网络中单个链接的形状，例如，匹配GPS点到最近的道路</li>
+</ul>
+</li>
+<li>拓扑
+<ul>
+<li>利用Frechet距离测量GPS序列与候选道路序列之间的拟合(On map-matching vehicle tracking data)</li>
+</ul>
+</li>
+<li>概率
+<ul>
+<li>为了处理噪声和低采样率的轨迹，概率算法考虑通过路网的多种可能路径，以找到最佳路径</li>
+</ul>
+</li>
+<li>其他
+<ul>
+<li>Map-matching for low-sampling-rate GPS trajectories</li>
+<li>Hidden Markov map matching through noise and sparseness</li>
+</ul>
+</li>
+</ol>
+<p>根据所考虑的采样点范围，地图匹配算法可以分为两类：</p>
+<ol>
+<li>局部/增量
+<ul>
+<li>运行非常有效，经常采用在线应用程序</li>
+<li>当轨迹采样率较低时，匹配精度会降低</li>
+</ul>
+</li>
+<li>全局
+<ul>
+<li>将整个轨迹与路网匹配</li>
+<li>比局部方法更精确，但效率较低，通常用于离线任务</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4yzpyxoj30u20dawgm.jpg" alt="image-20210707222408105" style="zoom:33%;" /></p>
+<h2 id="轨迹数据管理">轨迹数据管理</h2>
+<h3 id="轨迹索引与检索">轨迹索引与检索</h3>
+<blockquote>
+<p>文献：</p>
+<p>[1]  Trajectory indexing and retrieval</p>
+</blockquote>
+<ol>
+<li>K近邻(点/轨迹)查询
+<ul>
+<li>查询点的数量通常非常小，并且在应用程序中可能彼此很远</li>
+<li>检索穿过特定路径的车辆轨迹
+<ul>
+<li>将路网中的路径视为轨迹，利用KNN轨迹查询来检测与路径接近的轨迹</li>
+<li>利用地图匹配算法将轨迹转换为一系列路段，建立一些索引结构来管理路径和通过它们的轨迹之间的关系
+<ul>
+<li>suffix-tree-based索引结构</li>
+<li>由于索引的规模随着轨迹数量的增加而迅速增长，只适合管理近期生成的轨迹</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4z3isxhj30t00d8dhv.jpg" alt="image-20210708093017691" style="zoom:33%;" /></p>
+<ol start="2">
+<li>范围查询
+<ul>
+<li>基于轨迹构建3D-Rtree(ST-R-tree和TB-tree)</li>
+<li>随着时间的推移，不同的3D box之间的重叠仍然在不断增加</li>
+<li>将一个时间段划分为多个时间间隔，为每个时间间隔产生的轨迹建立一个单独的空间索引，如R树
+<ul>
+<li>Rt-Tree</li>
+<li>HR-Tree</li>
+<li>H+R-Tree</li>
+</ul>
+</li>
+<li>将地理空间划分为网格，然后为每个网格中的轨迹建立时序索引
+<ul>
+<li>CSE-Tree</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4z7lgp3j30se09g400.jpg" alt="image-20210708085148384" style="zoom:33%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4ze3y5nj30p209qdh2.jpg" alt="image-20210708085403452" style="zoom:33%;" /></p>
+<h3 id="轨迹距离相似性">轨迹距离/相似性</h3>
+<ol>
+<li>点和轨迹的距离
+<ul>
+<li>$D(q,A)=\min _{p\in A}D(p,q)$</li>
+<li>$D(Q,A)=\sum _{q\in Q}e^{D(q,A)}$, $S(Q,A)=\sum _{q\in Q}e^{-D(q,A)}$</li>
+</ul>
+</li>
+<li>轨迹和轨迹的距离
+<ul>
+<li>Closest-pair distance
+<ul>
+<li>$CPD(A,B)=\min _{p\in A, p^{'}\in B}D(p,p^{'})$</li>
+</ul>
+</li>
+<li>Sum-of-pairs distance
+<ul>
+<li>$SPD(A,B)=\sum _{i=1}^nD(p_i,p_i^{'})$</li>
+</ul>
+</li>
+<li>Dynamic Time Wrapping (DTW) distance</li>
+<li>Longest Common Subsequence(LCSS) LCSS-based distance</li>
+<li>Edit Distance on Real Sequence(EDR) distance</li>
+<li>K-BCT</li>
+</ul>
+</li>
+<li>轨迹段的距离
+<ul>
+<li>基于轨迹段的最小边界矩形(MBR)</li>
+<li>Trajectory-Hausdorff Distance</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4zh0ryij30no08s75c.jpg" alt="image-20210708100952520" style="zoom:35%;" /></p>
+<h2 id="轨迹中的不确定性">轨迹中的不确定性</h2>
+<h3 id="减少轨迹数据的不确定性">减少轨迹数据的不确定性</h3>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4zjuteyj30r20amgn2.jpg" alt="image-20210708101904433" style="zoom:33%;" /></p>
+<ul>
+<li>Modeling Uncertainty of a Trajectory for Queries</li>
+<li><strong>Path Inference from Uncertain Trajectories</strong>
+<ul>
+<li>为路网中产生的轨迹而设计的</li>
+<li>自由空间，移动的物体(如飞翔的小鸟或爬山的人)不会跟随道路网络中的路径</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4znanbcj30ug0ayq4w.jpg" alt="image-20210708104022077" style="zoom:33%;" /></p>
+<blockquote>
+<p>文献:</p>
+<p>[1] Constructing popular routes from uncertain trajectories</p>
+<p>[2] Calibrating trajectory data for similarity-based analysis</p>
+<p>[3] Reducing Uncertainty of Low-Sampling-Rate Trajectories</p>
+</blockquote>
+<h3 id="轨迹数据的隐私">轨迹数据的隐私</h3>
+<p>有两种主要场景，我们需要保护用户的轨迹数据免受隐私泄漏：</p>
+<ol>
+<li>实时连续定位服务</li>
+<li>历史轨迹的公开</li>
+</ol>
+<blockquote>
+<p>文献：</p>
+<p>[1] Privacy of spatial trajectories</p>
+</blockquote>
+<h2 id="轨迹模式挖掘">轨迹模式挖掘</h2>
+<h3 id="共同移动模式">共同移动模式</h3>
+<p>Flock(convoy), swarm, traveling companion, gathering</p>
+<blockquote>
+<p>The traveling companion patterns can be regarded as an online (and incremental) detection fashion of convoy and swarm</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4zqvzsqj30su0ecabq.jpg" alt="image-20210708113022311" style="zoom:33%;" /></p>
+<h3 id="轨迹聚类">轨迹聚类</h3>
+<ol>
+<li>回归混合模型和期望最大化(EM)算法</li>
+<li>轨迹分段，利用Trajectory-Hausdorff Distance构建轨迹段聚类</li>
+<li>增量聚类算法</li>
+<li>Micro-and-Macroclustering framework</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4zx071cj30ta0a240e.jpg" alt="image-20210708123750956" style="zoom:33%;" /></p>
+<h3 id="序列模式">序列模式</h3>
+<p>Sequential Patterns是指一定数量的移动物体在相似的时间间隔内沿着公共序列的位置移动</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq4zxtbbmj30j2022jre.jpg" alt="image-20210708134241039" style="zoom:40%;" /></p>
+<p>共同序列$l_1\rightarrow l_2\rightarrow l_4$</p>
+<p>为了从轨迹中检测序列模式，我们首先需要定义序列中的一个(公共)位置。然而，在许多GPS轨迹中，每个点都具有一对GPS坐标的特征，这些坐标不会在每个模式实例中完全重复</p>
+<ol>
+<li>Sequential Pattern Mining in a Free Space
+<ul>
+<li>Line-Simplification-Based Methods</li>
+<li>Clustering-Based Methods
+<ul>
+<li>检测驻留点作为聚类点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sequential Pattern Mining in a Road Network</li>
+</ol>
+<blockquote>
+<p>文献：</p>
+<p>[1] PRESS: A novel framework of trajectory compression in roadnetworks</p>
+<p>[2] Travel time estimation of a path using sparse trajectories.</p>
+</blockquote>
+<h3 id="周期模式">周期模式</h3>
+<p>两阶段检测方法：</p>
+<ol>
+<li>使用KDE等基于密度的聚类算法来检测运动目标经常访问的参考点</li>
+<li>通过使用分层聚类算法总结部分移动序列的周期性行为</li>
+</ol>
+<h2 id="轨迹分类">轨迹分类</h2>
+<p>交通方式分类：驾车、自行车、步行、公交车</p>
+<p>三个主要步骤：</p>
+<ol>
+<li>利用分割方法将轨迹分割成若干段</li>
+<li>从每个片段中提取特征</li>
+<li>构建模型以对每个段（或点）进行分类</li>
+</ol>
+<p>由于轨迹本质上是一个序列，我们可以利用现有的序列推理模型，如动态贝叶斯网络(DBN)、HMM和条件随机场(CRF)，它们合并了来自局部点(或段)和相邻点(或段)之间的序列模式的信息</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq502xrv6j30qc0b2dhb.jpg" alt="image-20210708142709564" style="zoom:33%;" /></p>
+<h2 id="轨迹数据的异常检测">轨迹数据的异常检测</h2>
+<blockquote>
+<p>文献：</p>
+<p>[1] Anomaly detection: A survey</p>
+</blockquote>
+<h3 id="检测异常轨迹">检测异常轨迹</h3>
+<p>利用现有的轨迹聚类或频繁模式挖掘方法，如果一个轨迹(或一个片段)不能容纳在任何(基于密度的)簇中，或不频繁，它可能是一个异常轨迹</p>
+<h3 id="从轨迹中判别异常事件">从轨迹中判别异常事件</h3>
+<p>使用多种轨迹检测流量异常(而不是轨迹本身)</p>
+<p>利用轨迹数据补全路网</p>
+<blockquote>
+<p>文献：</p>
+<p>[1] Crowd sensing of traffic anomalies based on human mobility and social media</p>
+</blockquote>
+<h2 id="由轨迹数据到其他表征">由轨迹数据到其他表征</h2>
+<h3 id="轨迹到图">轨迹到图</h3>
+<ol>
+<li>
+<p>路网情景</p>
+<ul>
+<li>轨迹匹配到路网建立有向图</li>
+<li>A landmark graph</li>
+<li>A region graph</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq506f3o2j30os0cedi4.jpg" alt="image-20210708145210661" style="zoom:33%;" /></p>
+</li>
+<li>
+<p>自由空间</p>
+<ul>
+<li>利用聚类方法从原始轨迹中识别出关键的顶点位置</li>
+<li>两个顶点连接起来，根据经过两个位置的轨迹形成可路由图</li>
+</ul>
+<ol>
+<li>出行推荐、从大量的轨迹中找出流行的路线、使用社区发现方法从轨迹中基于图检测社区</li>
+<li>评估用户相似度</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq50a1tf4j30uw0mkdk1.jpg" alt="image-20210708151326896" style="zoom:33%;" /></p>
+<h3 id="轨迹到矩阵">轨迹到矩阵</h3>
+<p>矩阵可以帮助补充缺失值</p>
+<ol>
+<li>Travel Recommendation（CF/MF）</li>
+<li>Traffic Condition Estimation</li>
+<li>Diagnosing Traffic Anomalies</li>
+</ol>
+<h3 id="轨迹到张量">轨迹到张量</h3>
+<blockquote>
+<p>文献：</p>
+<p>[1] Travel Time Estimation of a Path using Sparse Trajectories</p>
+</blockquote>
+<h2 id="其他">其他</h2>
+<h3 id="公开数据集">公开数据集</h3>
+<h3 id="会议和期刊">会议和期刊</h3>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsq50dteboj315s0eeq8s.jpg" alt="image-20210708161206671" style="zoom:30%;" /></p>
+<h3 id="未来研究方向">未来研究方向</h3>
+<ol>
+<li>多源数据融合</li>
+<li>轨迹数据管理</li>
+<li>跨域机器学习</li>
+<li>轨迹可视化</li>
+</ol>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">轨迹数据挖掘</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e8%bd%a8%e8%bf%b9%e6%95%b0%e6%8d%ae%e6%8c%96%e6%8e%98:%e6%a6%82%e8%bf%b0&amp;body=https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://gengdd2018.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu4b9c718166280bb42d9325f20dee7c58_11030_270x270_fill_lanczos_center_2.png" alt="Dongdong Geng"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://gengdd2018.github.io/">Dongdong Geng</a></h5>
+      <h6 class="card-subtitle">Master of Traffic Engineering</h6>
+      <p class="card-text">My research interests include traffic engineering, intelligent transportation and artificial intelligence.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gengdd" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

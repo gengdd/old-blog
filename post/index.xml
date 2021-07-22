@@ -5,12 +5,395 @@
     <link>https://gengdd2018.github.io/post/</link>
       <atom:link href="https://gengdd2018.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Fri, 16 Jul 2021 22:34:36 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Thu, 22 Jul 2021 23:39:49 +0800</lastBuildDate>
     <image>
       <url>https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://gengdd2018.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>轨迹数据挖掘:概述</title>
+      <link>https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Thu, 22 Jul 2021 23:39:49 +0800</pubDate>
+      <guid>https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</guid>
+      <description>&lt;h2 id=&#34;轨迹数据挖掘范式&#34;&gt;轨迹数据挖掘范式&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yeellrj30s20mwn1g.jpg&#34; alt=&#34;image-20210707184333618&#34; style=&#34;zoom:35%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;轨迹数据&#34;&gt;轨迹数据&lt;/h2&gt;
+&lt;p&gt;分类:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人的移动
+&lt;ul&gt;
+&lt;li&gt;主动记录&lt;/li&gt;
+&lt;li&gt;被动记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;运输车辆的移动：资源分配、交通分析、交通网络改善&lt;/li&gt;
+&lt;li&gt;动物的移动&lt;/li&gt;
+&lt;li&gt;自然现象的移动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;轨迹数据处理&#34;&gt;轨迹数据处理&lt;/h2&gt;
+&lt;h3 id=&#34;噪声滤波&#34;&gt;噪声滤波&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;均值(中位数)滤波
+&lt;ul&gt;
+&lt;li&gt;在处理极端误差时，中值滤波比均值滤波具有更强的鲁棒性&lt;/li&gt;
+&lt;li&gt;当处理多个连续噪声点时，需要更大尺寸的滑动窗口&lt;/li&gt;
+&lt;li&gt;当轨迹采样率很低时，均值滤波器和中值滤波器不再是很好的选择&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;卡尔曼(粒子)滤波
+&lt;ul&gt;
+&lt;li&gt;卡尔曼滤波器通过假设线性模型加上高斯噪声来提高效率，而粒子滤波器则放宽了这些假设&lt;/li&gt;
+&lt;li&gt;如果轨迹上的第一个点是有噪声的，两个滤波器的有效性显著下降&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基于启发式的异常点检测
+&lt;ul&gt;
+&lt;li&gt;通过使用离群点检测算法直接从轨迹中去除噪声点&lt;/li&gt;
+&lt;li&gt;基于距离的异常检测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4ykou8yj30ik08uwew.jpg&#34; alt=&#34;image-20210707194302669&#34; style=&#34;zoom:30%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;驻留点检测&#34;&gt;驻留点检测&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4ymhuo0j30qi09a75h.jpg&#34; alt=&#34;image-20210707194622759&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;单点位置
+&lt;ul&gt;
+&lt;li&gt;这种情况是非常罕见的，因为用户的定位设备通常产生不同的读数，即使在同一位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;人们走动，或保持静止但定位读数会四处移动&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] Mining user similarity based on location history&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;轨迹压缩&#34;&gt;轨迹压缩&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;离线压缩(即批处理模式):通过从原始轨迹中剔除一些误差可以忽略的点来生成近似轨迹
+&lt;ul&gt;
+&lt;li&gt;Douglas-Peucke($N^2$)&lt;/li&gt;
+&lt;li&gt;($N\log N$)(Speeding up the Douglas-Peucker line simplification algorithm)&lt;/li&gt;
+&lt;li&gt;Bellman’s algorithm($N^3$)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;在线压缩:即在物体运动时立即压缩轨迹
+&lt;ul&gt;
+&lt;li&gt;基于窗口的算法
+&lt;ul&gt;
+&lt;li&gt;Sliding Window Algorithm&lt;/li&gt;
+&lt;li&gt;Open Window Algorithm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基于移动物体的速度和方向&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yph24fj30wm0im0vp.jpg&#34; alt=&#34;image-20210707200654592&#34; style=&#34;zoom:30%;&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;轨迹语义压缩
+&lt;ul&gt;
+&lt;li&gt;Trajectory Simplification (TS) algorithm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;考虑受交通网络约束的轨迹压缩
+&lt;ul&gt;
+&lt;li&gt;PRESS(PRESS: A novel framework of trajectory compression in roadnetworks)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;两个距离度量度量压缩的误差：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;垂直欧式距离&lt;/li&gt;
+&lt;li&gt;时间同步欧式距离&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;轨迹分割&#34;&gt;轨迹分割&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;基于时间间隔&lt;/li&gt;
+&lt;li&gt;基于轨迹的形状
+&lt;ul&gt;
+&lt;li&gt;Minimal Description Language (MDL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基于轨迹中点的语义意义
+&lt;ul&gt;
+&lt;li&gt;将轨迹划分为不同运输方式的分段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yslomej30me0bkt9z.jpg&#34; alt=&#34;image-20210707204634976&#34; style=&#34;zoom:35%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yvez0sj30ls0futa6.jpg&#34; alt=&#34;image-20210707214507726&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;地图匹配&#34;&gt;地图匹配&lt;/h3&gt;
+&lt;p&gt;根据所使用的附加信息，地图匹配算法可以分为四类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;几何
+&lt;ul&gt;
+&lt;li&gt;几何地图匹配算法考虑道路网络中单个链接的形状，例如，匹配GPS点到最近的道路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;拓扑
+&lt;ul&gt;
+&lt;li&gt;利用Frechet距离测量GPS序列与候选道路序列之间的拟合(On map-matching vehicle tracking data)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;概率
+&lt;ul&gt;
+&lt;li&gt;为了处理噪声和低采样率的轨迹，概率算法考虑通过路网的多种可能路径，以找到最佳路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;其他
+&lt;ul&gt;
+&lt;li&gt;Map-matching for low-sampling-rate GPS trajectories&lt;/li&gt;
+&lt;li&gt;Hidden Markov map matching through noise and sparseness&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;根据所考虑的采样点范围，地图匹配算法可以分为两类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;局部/增量
+&lt;ul&gt;
+&lt;li&gt;运行非常有效，经常采用在线应用程序&lt;/li&gt;
+&lt;li&gt;当轨迹采样率较低时，匹配精度会降低&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;全局
+&lt;ul&gt;
+&lt;li&gt;将整个轨迹与路网匹配&lt;/li&gt;
+&lt;li&gt;比局部方法更精确，但效率较低，通常用于离线任务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yzpyxoj30u20dawgm.jpg&#34; alt=&#34;image-20210707222408105&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;轨迹数据管理&#34;&gt;轨迹数据管理&lt;/h2&gt;
+&lt;h3 id=&#34;轨迹索引与检索&#34;&gt;轨迹索引与检索&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1]  Trajectory indexing and retrieval&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;K近邻(点/轨迹)查询
+&lt;ul&gt;
+&lt;li&gt;查询点的数量通常非常小，并且在应用程序中可能彼此很远&lt;/li&gt;
+&lt;li&gt;检索穿过特定路径的车辆轨迹
+&lt;ul&gt;
+&lt;li&gt;将路网中的路径视为轨迹，利用KNN轨迹查询来检测与路径接近的轨迹&lt;/li&gt;
+&lt;li&gt;利用地图匹配算法将轨迹转换为一系列路段，建立一些索引结构来管理路径和通过它们的轨迹之间的关系
+&lt;ul&gt;
+&lt;li&gt;suffix-tree-based索引结构&lt;/li&gt;
+&lt;li&gt;由于索引的规模随着轨迹数量的增加而迅速增长，只适合管理近期生成的轨迹&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4z3isxhj30t00d8dhv.jpg&#34; alt=&#34;image-20210708093017691&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;范围查询
+&lt;ul&gt;
+&lt;li&gt;基于轨迹构建3D-Rtree(ST-R-tree和TB-tree)&lt;/li&gt;
+&lt;li&gt;随着时间的推移，不同的3D box之间的重叠仍然在不断增加&lt;/li&gt;
+&lt;li&gt;将一个时间段划分为多个时间间隔，为每个时间间隔产生的轨迹建立一个单独的空间索引，如R树
+&lt;ul&gt;
+&lt;li&gt;Rt-Tree&lt;/li&gt;
+&lt;li&gt;HR-Tree&lt;/li&gt;
+&lt;li&gt;H+R-Tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;将地理空间划分为网格，然后为每个网格中的轨迹建立时序索引
+&lt;ul&gt;
+&lt;li&gt;CSE-Tree&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4z7lgp3j30se09g400.jpg&#34; alt=&#34;image-20210708085148384&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4ze3y5nj30p209qdh2.jpg&#34; alt=&#34;image-20210708085403452&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;轨迹距离相似性&#34;&gt;轨迹距离/相似性&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;点和轨迹的距离
+&lt;ul&gt;
+&lt;li&gt;$D(q,A)=\min _{p\in A}D(p,q)$&lt;/li&gt;
+&lt;li&gt;$D(Q,A)=\sum _{q\in Q}e^{D(q,A)}$, $S(Q,A)=\sum _{q\in Q}e^{-D(q,A)}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;轨迹和轨迹的距离
+&lt;ul&gt;
+&lt;li&gt;Closest-pair distance
+&lt;ul&gt;
+&lt;li&gt;$CPD(A,B)=\min _{p\in A, p^{&#39;}\in B}D(p,p^{&#39;})$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sum-of-pairs distance
+&lt;ul&gt;
+&lt;li&gt;$SPD(A,B)=\sum _{i=1}^nD(p_i,p_i^{&#39;})$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dynamic Time Wrapping (DTW) distance&lt;/li&gt;
+&lt;li&gt;Longest Common Subsequence(LCSS) LCSS-based distance&lt;/li&gt;
+&lt;li&gt;Edit Distance on Real Sequence(EDR) distance&lt;/li&gt;
+&lt;li&gt;K-BCT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;轨迹段的距离
+&lt;ul&gt;
+&lt;li&gt;基于轨迹段的最小边界矩形(MBR)&lt;/li&gt;
+&lt;li&gt;Trajectory-Hausdorff Distance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4zh0ryij30no08s75c.jpg&#34; alt=&#34;image-20210708100952520&#34; style=&#34;zoom:35%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;轨迹中的不确定性&#34;&gt;轨迹中的不确定性&lt;/h2&gt;
+&lt;h3 id=&#34;减少轨迹数据的不确定性&#34;&gt;减少轨迹数据的不确定性&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4zjuteyj30r20amgn2.jpg&#34; alt=&#34;image-20210708101904433&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Modeling Uncertainty of a Trajectory for Queries&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Path Inference from Uncertain Trajectories&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;为路网中产生的轨迹而设计的&lt;/li&gt;
+&lt;li&gt;自由空间，移动的物体(如飞翔的小鸟或爬山的人)不会跟随道路网络中的路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4znanbcj30ug0ayq4w.jpg&#34; alt=&#34;image-20210708104022077&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献:&lt;/p&gt;
+&lt;p&gt;[1] Constructing popular routes from uncertain trajectories&lt;/p&gt;
+&lt;p&gt;[2] Calibrating trajectory data for similarity-based analysis&lt;/p&gt;
+&lt;p&gt;[3] Reducing Uncertainty of Low-Sampling-Rate Trajectories&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;轨迹数据的隐私&#34;&gt;轨迹数据的隐私&lt;/h3&gt;
+&lt;p&gt;有两种主要场景，我们需要保护用户的轨迹数据免受隐私泄漏：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;实时连续定位服务&lt;/li&gt;
+&lt;li&gt;历史轨迹的公开&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] Privacy of spatial trajectories&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;轨迹模式挖掘&#34;&gt;轨迹模式挖掘&lt;/h2&gt;
+&lt;h3 id=&#34;共同移动模式&#34;&gt;共同移动模式&lt;/h3&gt;
+&lt;p&gt;Flock(convoy), swarm, traveling companion, gathering&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The traveling companion patterns can be regarded as an online (and incremental) detection fashion of convoy and swarm&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4zqvzsqj30su0ecabq.jpg&#34; alt=&#34;image-20210708113022311&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;轨迹聚类&#34;&gt;轨迹聚类&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;回归混合模型和期望最大化(EM)算法&lt;/li&gt;
+&lt;li&gt;轨迹分段，利用Trajectory-Hausdorff Distance构建轨迹段聚类&lt;/li&gt;
+&lt;li&gt;增量聚类算法&lt;/li&gt;
+&lt;li&gt;Micro-and-Macroclustering framework&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4zx071cj30ta0a240e.jpg&#34; alt=&#34;image-20210708123750956&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;序列模式&#34;&gt;序列模式&lt;/h3&gt;
+&lt;p&gt;Sequential Patterns是指一定数量的移动物体在相似的时间间隔内沿着公共序列的位置移动&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4zxtbbmj30j2022jre.jpg&#34; alt=&#34;image-20210708134241039&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;共同序列$l_1\rightarrow l_2\rightarrow l_4$&lt;/p&gt;
+&lt;p&gt;为了从轨迹中检测序列模式，我们首先需要定义序列中的一个(公共)位置。然而，在许多GPS轨迹中，每个点都具有一对GPS坐标的特征，这些坐标不会在每个模式实例中完全重复&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Sequential Pattern Mining in a Free Space
+&lt;ul&gt;
+&lt;li&gt;Line-Simplification-Based Methods&lt;/li&gt;
+&lt;li&gt;Clustering-Based Methods
+&lt;ul&gt;
+&lt;li&gt;检测驻留点作为聚类点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sequential Pattern Mining in a Road Network&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] PRESS: A novel framework of trajectory compression in roadnetworks&lt;/p&gt;
+&lt;p&gt;[2] Travel time estimation of a path using sparse trajectories.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;周期模式&#34;&gt;周期模式&lt;/h3&gt;
+&lt;p&gt;两阶段检测方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用KDE等基于密度的聚类算法来检测运动目标经常访问的参考点&lt;/li&gt;
+&lt;li&gt;通过使用分层聚类算法总结部分移动序列的周期性行为&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;轨迹分类&#34;&gt;轨迹分类&lt;/h2&gt;
+&lt;p&gt;交通方式分类：驾车、自行车、步行、公交车&lt;/p&gt;
+&lt;p&gt;三个主要步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;利用分割方法将轨迹分割成若干段&lt;/li&gt;
+&lt;li&gt;从每个片段中提取特征&lt;/li&gt;
+&lt;li&gt;构建模型以对每个段（或点）进行分类&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由于轨迹本质上是一个序列，我们可以利用现有的序列推理模型，如动态贝叶斯网络(DBN)、HMM和条件随机场(CRF)，它们合并了来自局部点(或段)和相邻点(或段)之间的序列模式的信息&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq502xrv6j30qc0b2dhb.jpg&#34; alt=&#34;image-20210708142709564&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;轨迹数据的异常检测&#34;&gt;轨迹数据的异常检测&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] Anomaly detection: A survey&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;检测异常轨迹&#34;&gt;检测异常轨迹&lt;/h3&gt;
+&lt;p&gt;利用现有的轨迹聚类或频繁模式挖掘方法，如果一个轨迹(或一个片段)不能容纳在任何(基于密度的)簇中，或不频繁，它可能是一个异常轨迹&lt;/p&gt;
+&lt;h3 id=&#34;从轨迹中判别异常事件&#34;&gt;从轨迹中判别异常事件&lt;/h3&gt;
+&lt;p&gt;使用多种轨迹检测流量异常(而不是轨迹本身)&lt;/p&gt;
+&lt;p&gt;利用轨迹数据补全路网&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] Crowd sensing of traffic anomalies based on human mobility and social media&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;由轨迹数据到其他表征&#34;&gt;由轨迹数据到其他表征&lt;/h2&gt;
+&lt;h3 id=&#34;轨迹到图&#34;&gt;轨迹到图&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;路网情景&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;轨迹匹配到路网建立有向图&lt;/li&gt;
+&lt;li&gt;A landmark graph&lt;/li&gt;
+&lt;li&gt;A region graph&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq506f3o2j30os0cedi4.jpg&#34; alt=&#34;image-20210708145210661&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自由空间&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;利用聚类方法从原始轨迹中识别出关键的顶点位置&lt;/li&gt;
+&lt;li&gt;两个顶点连接起来，根据经过两个位置的轨迹形成可路由图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;出行推荐、从大量的轨迹中找出流行的路线、使用社区发现方法从轨迹中基于图检测社区&lt;/li&gt;
+&lt;li&gt;评估用户相似度&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq50a1tf4j30uw0mkdk1.jpg&#34; alt=&#34;image-20210708151326896&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;轨迹到矩阵&#34;&gt;轨迹到矩阵&lt;/h3&gt;
+&lt;p&gt;矩阵可以帮助补充缺失值&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Travel Recommendation（CF/MF）&lt;/li&gt;
+&lt;li&gt;Traffic Condition Estimation&lt;/li&gt;
+&lt;li&gt;Diagnosing Traffic Anomalies&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;轨迹到张量&#34;&gt;轨迹到张量&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文献：&lt;/p&gt;
+&lt;p&gt;[1] Travel Time Estimation of a Path using Sparse Trajectories&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;公开数据集&#34;&gt;公开数据集&lt;/h3&gt;
+&lt;h3 id=&#34;会议和期刊&#34;&gt;会议和期刊&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq50dteboj315s0eeq8s.jpg&#34; alt=&#34;image-20210708161206671&#34; style=&#34;zoom:30%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;未来研究方向&#34;&gt;未来研究方向&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;多源数据融合&lt;/li&gt;
+&lt;li&gt;轨迹数据管理&lt;/li&gt;
+&lt;li&gt;跨域机器学习&lt;/li&gt;
+&lt;li&gt;轨迹可视化&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>新博客试用</title>
