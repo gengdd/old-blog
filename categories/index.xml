@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories | GDD</title>
-    <link>https://gengdd2018.github.io/categories/</link>
-      <atom:link href="https://gengdd2018.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://gengdd.github.io/categories/</link>
+      <atom:link href="https://gengdd.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Thu, 22 Jul 2021 23:39:49 +0800</lastBuildDate>
     <image>
-      <url>https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
+      <url>https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
       <title>Categories</title>
-      <link>https://gengdd2018.github.io/categories/</link>
+      <link>https://gengdd.github.io/categories/</link>
     </image>
     
   </channel>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GDD</title>
-    <link>https://gengdd2018.github.io/</link>
-      <atom:link href="https://gengdd2018.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://gengdd.github.io/</link>
+      <atom:link href="https://gengdd.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>GDD</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://gengdd2018.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
+      <url>https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
       <title>GDD</title>
-      <link>https://gengdd2018.github.io/</link>
+      <link>https://gengdd.github.io/</link>
     </image>
     
     <item>
       <title>Example Talk</title>
-      <link>https://gengdd2018.github.io/talk/example-talk/</link>
+      <link>https://gengdd.github.io/talk/example-talk/</link>
       <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>https://gengdd2018.github.io/talk/example-talk/</guid>
+      <guid>https://gengdd.github.io/talk/example-talk/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
@@ -34,9 +34,9 @@
     
     <item>
       <title>轨迹数据挖掘:概述</title>
-      <link>https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</link>
+      <link>https://gengdd.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Thu, 22 Jul 2021 23:39:49 +0800</pubDate>
-      <guid>https://gengdd2018.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://gengdd.github.io/post/%E8%BD%A8%E8%BF%B9%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%A6%82%E8%BF%B0/</guid>
       <description>&lt;h2 id=&#34;轨迹数据挖掘范式&#34;&gt;轨迹数据挖掘范式&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsq4yeellrj30s20mwn1g.jpg&#34; alt=&#34;image-20210707184333618&#34; style=&#34;zoom:35%;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;轨迹数据&#34;&gt;轨迹数据&lt;/h2&gt;
@@ -417,9 +417,9 @@
     
     <item>
       <title>新博客试用</title>
-      <link>https://gengdd2018.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</link>
+      <link>https://gengdd.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</link>
       <pubDate>Fri, 16 Jul 2021 22:34:36 +0800</pubDate>
-      <guid>https://gengdd2018.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</guid>
+      <guid>https://gengdd.github.io/post/%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%AF%95%E7%94%A8/</guid>
       <description>&lt;h2 id=&#34;公式&#34;&gt;公式&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;内联公式$\frac{1}{2}+\frac{1}{2} = 1$&lt;/li&gt;
@@ -431,15 +431,15 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;图片&#34;&gt;图片&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsj64c3lgkj31hk0syjuz.jpg&#34; alt=&#34;image-20210716223911416&#34; style=&#34;zoom:25%;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;pdf&#34;&gt;PDF&lt;/h2&gt;
-&lt;a href=&#34;https://gengdd2018.github.io/uploads/TIST0603-29%20-%20TrajectoryDataMining-tist-yuzheng_published.pdf&#34; target=&#34;_blank&#34;&gt;轨迹数据挖掘概述&lt;/a&gt;
+&lt;a href=&#34;https://gengdd.github.io/uploads/TIST0603-29%20-%20TrajectoryDataMining-tist-yuzheng_published.pdf&#34; target=&#34;_blank&#34;&gt;轨迹数据挖掘概述&lt;/a&gt;
 </description>
     </item>
     
     <item>
       <title>Slides</title>
-      <link>https://gengdd2018.github.io/slides/example/</link>
+      <link>https://gengdd.github.io/slides/example/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://gengdd2018.github.io/slides/example/</guid>
+      <guid>https://gengdd.github.io/slides/example/</guid>
       <description>&lt;h1 id=&#34;create-slides-in-markdown-with-wowchemy&#34;&gt;Create slides in Markdown with Wowchemy&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://wowchemy.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wowchemy&lt;/a&gt; | &lt;a href=&#34;https://owchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -566,27 +566,27 @@ Three
     
     <item>
       <title>Privacy Policy</title>
-      <link>https://gengdd2018.github.io/privacy/</link>
+      <link>https://gengdd.github.io/privacy/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>https://gengdd2018.github.io/privacy/</guid>
+      <guid>https://gengdd.github.io/privacy/</guid>
       <description>&lt;p&gt;Add your privacy policy here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Terms</title>
-      <link>https://gengdd2018.github.io/terms/</link>
+      <link>https://gengdd.github.io/terms/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>https://gengdd2018.github.io/terms/</guid>
+      <guid>https://gengdd.github.io/terms/</guid>
       <description>&lt;p&gt;Add your terms here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Example Project</title>
-      <link>https://gengdd2018.github.io/project/example/</link>
+      <link>https://gengdd.github.io/project/example/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://gengdd2018.github.io/project/example/</guid>
+      <guid>https://gengdd.github.io/project/example/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
 &lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
 &lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
@@ -597,9 +597,9 @@ Three
     
     <item>
       <title>An example conference paper</title>
-      <link>https://gengdd2018.github.io/publication/example/</link>
+      <link>https://gengdd.github.io/publication/example/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://gengdd2018.github.io/publication/example/</guid>
+      <guid>https://gengdd.github.io/publication/example/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
@@ -616,9 +616,9 @@ Three
     
     <item>
       <title></title>
-      <link>https://gengdd2018.github.io/admin/config.yml</link>
+      <link>https://gengdd.github.io/admin/config.yml</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://gengdd2018.github.io/admin/config.yml</guid>
+      <guid>https://gengdd.github.io/admin/config.yml</guid>
       <description></description>
     </item>
     

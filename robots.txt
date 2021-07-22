@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://gengdd2018.github.io/sitemap.xml
+Sitemap: https://gengdd.github.io/sitemap.xml
