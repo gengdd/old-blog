@@ -125,7 +125,7 @@ $$&lt;/p&gt;
 s=F_{ex}(z,W)=\sigma (W_2\delta(W_1z))
 $$&lt;/p&gt;
 &lt;p&gt;$$
-\tilde{x}&lt;em&gt;c=F&lt;/em&gt;{scale}(u_c, s_c)=s_c\cdot u_c
+\tilde{x_{c}}=F_{scale}(u_c, s_c)=s_c \cdot u_c
 $$&lt;/p&gt;
 &lt;h3 id=&#34;global-relation-module&#34;&gt;Global Relation Module&lt;/h3&gt;
 &lt;p&gt;提取完网格单元的局部特征后，本文提出了一个全局关系模块，相比现有方法能更高效地捕获全局空间关系。受图像关系推理网络的启发，提出在更高的语义级别（即区域级别）执行关系推理。该语义级别更易于捕获全局关系。此外，基于最小割（Minimum Cut）理论为区域划分设计了无监督损失。&lt;/p&gt;
@@ -167,8 +167,8 @@ b = \frac{\mathbf{I}_{M}}{\sqrt{M}}
 $$&lt;/p&gt;
 &lt;p&gt;$$
 \mathcal{L}_m = -\mathcal{L}_c+||a-b||_F
-$$
-$\mathbf{\hat{B}}$ assigns exactly $N/M$ grid cells to each region&lt;/p&gt;
+$$&lt;/p&gt;
+&lt;p&gt;$\mathbf{\hat{B}}$ assigns exactly $N/M$ grid cells to each region&lt;/p&gt;
 &lt;h4 id=&#34;space-conversion&#34;&gt;Space Conversion&lt;/h4&gt;
 &lt;p&gt;根据分配矩阵B，将局部网格单元特征聚合到区域空间中以获得区域特征，并生成区域间的连接关系（即区域网络的邻接矩阵）。
 $$
