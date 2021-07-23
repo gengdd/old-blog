@@ -99,9 +99,13 @@
 &lt;p&gt;我们采用了SENet(Squeeze-and-Excitation Network, SENet)来融合每一层小的(即局部的)接受域内的空间和通道信息，该方法已经被证明能够有效地产生每个网格单元的特征。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfa2gr3hbj30mk0gk40k.jpg&#34; alt=&#34;image-20210713135335131&#34; style=&#34;zoom:40%;&#34; /&gt;
 $$
-z_c=F_{sq}(u_c)=\frac{1}{W\times H}\sum _{i=1}^{W}\sum _{j=1}^Hu_c(i,j) \&lt;br&gt;
-s=F_{ex}(z,W)=\sigma (W_2\delta(W_1z)) \&lt;br&gt;
-\tilde{x}_c=F_{scale}(u_c, s_c)=s_c\cdot u_c
+z_c=F_{sq}(u_c)=\frac{1}{W\times H}\sum _{i=1}^{W}\sum _{j=1}^Hu_c(i,j)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+s=F_{ex}(z,W)=\sigma (W_2\delta(W_1z))
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\tilde{x}&lt;em&gt;c=F&lt;/em&gt;{scale}(u_c, s_c)=s_c\cdot u_c
 $$&lt;/p&gt;
 &lt;h3 id=&#34;global-relation-module&#34;&gt;Global Relation Module&lt;/h3&gt;
 &lt;p&gt;提取完网格单元的局部特征后，本文提出了一个全局关系模块，相比现有方法能更高效地捕获全局空间关系。受图像关系推理网络的启发，提出在更高的语义级别（即区域级别）执行关系推理。该语义级别更易于捕获全局关系。此外，基于最小割（Minimum Cut）理论为区域划分设计了无监督损失。&lt;/p&gt;
