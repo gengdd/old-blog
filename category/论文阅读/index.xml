@@ -5,12 +5,195 @@
     <link>https://gengdd.github.io/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</link>
       <atom:link href="https://gengdd.github.io/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
     <description>论文阅读</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Thu, 22 Jul 2021 23:39:49 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Fri, 23 Jul 2021 23:02:53 +0800</lastBuildDate>
     <image>
       <url>https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png</url>
       <title>论文阅读</title>
       <link>https://gengdd.github.io/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</link>
     </image>
+    
+    <item>
+      <title>细粒度城市流量预测</title>
+      <link>https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/</link>
+      <pubDate>Fri, 23 Jul 2021 23:02:53 +0800</pubDate>
+      <guid>https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/</guid>
+      <description>&lt;center&gt;&lt;div style=&#34;font-family:华文楷体;font-size:30pt&#34;&gt;细粒度城市流量预测&lt;/div&gt;&lt;/center&gt;
+&lt;div&gt;
+&lt;div style=&#34;width:60px;float:left; font-family:方正公文黑体;&#34;&gt;摘要:&lt;/div&gt; 
+&lt;div style=&#34;overflow:hidden; font-family:华文楷体;&#34;&gt;城市流量预测对智慧城市在交通管理和风险评估等方面有很大的帮助。我们将城市流量预测由粗粒度扩展到细粒度，提出了以下具体的挑战：(1)细粒度数据中观测网格间的转移至关重要，这使得在全域范围内捕获网格单元之间的空间依赖性变得更加复杂(2)在大量独立网格单元中学习外部因素的影响具有挑战。我们提出了一个时空关系网络(Spatio-Temporal Relation Network，STRN)来预测细粒度的城市流量。首先，使用骨干网络来学习每个单元格的高层次表示。其次，我们提出了一个全局关系模块(Global Relation Module，GloNet)，与现有方法相比，该模块可以更有效地捕获全局空间依赖关系。第三，我们设计了一个元学习器，将外部因素和土地功能(如POI密度)作为输入以处理元知识并提高模型性能。&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;INTRODUCTION&lt;/h2&gt;
+&lt;p&gt;在基于网格的城市流量预测中，必须考虑的一个关键属性是时空(ST)相关性：网格单元的未来状态取决于自身和邻居的历史状态。此外，城市流量也受到天气条件和事件等外部因素的影响。例如，大雪可以大大减少许多地区的交通流量。许多现有的研究使用卷积神经网络(CNNs)作为骨干结构来提取空间上的近距离依赖关系；时间依赖关系(例如，最近的、每天的和每周的级别)是使用不同的子分支来捕获的。同时，通过一些人工设计的子网对外部因素的影响进行编码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsf4yn598oj30lu0a046e.jpg&#34; alt=&#34;image-20210713105637603&#34; style=&#34;zoom:45%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;对于特定的城市，增加粒度(例如:600m→150m)相当于获得更高的分辨率(如32×32→128×128)。因此，我们可以交替使用“高分辨率”和“细粒度”。尽管之前的研究在粗粒度级别(如32×32)上取得了很好的结果，但由于以下具体挑战，他们的架构并不适合预测细粒度的城市流量:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;全局空间依赖性
+&lt;ol&gt;
+&lt;li&gt;CNN多层堆叠&lt;/li&gt;
+&lt;li&gt;膨胀卷积&lt;/li&gt;
+&lt;li&gt;DeepSTN+：显式建模所有成对关系网格网格，引入大量参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;外部因素与土地功能
+&lt;ol&gt;
+&lt;li&gt;之前的研究如DeepST和ST-ResNet使用子网将外部因素的影响映射到每个网格单元上，这种方法扩展到细粒度将增大大量参数&lt;/li&gt;
+&lt;li&gt;使用外部因素只学习不同类型POI特征的权重，而忽略了外部因素对不同网格单元的影响存在显著差异&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们提出了一个用于细粒度城市流预测的时空关系网络(STRN)，STRN遵循CPT范式对三种时间依赖进行建模，并使用基于CNN的主干来提取高层ST特征。为了解决上述挑战，我们设计了如下两个具体模块：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;引入一个新的结构(GloNet)来捕获全局空间依赖性
+&lt;ol&gt;
+&lt;li&gt;在更高级的语义层(即区域层)上执行关系推断，该语义层对捕获全局关系更友好&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;提出了一种基于矩阵分解的元学习器来应用随时变化的外部因素响应&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsf7r9kwqzj30n40c076o.jpg&#34; alt=&#34;image-20210713123338325&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;formulation&#34;&gt;FORMULATION&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;网格单元$N=H\times W$&lt;/p&gt;
+&lt;p&gt;将感兴趣的区域（例如一个城市地区）均匀地划分为一个$H\times W$栅格，栅格中共有$HW$个网格单元&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;城市流量$X_t \in \mathbb{R}^{K\times H \times W}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;区域(Region)$B\in \mathbb{R}^{N\times M}$&lt;/p&gt;
+&lt;p&gt;土地使用和功能赋予不规则区域以不同的地理语义。与基于网格的方法相比，它为我们提供了更自然和语义上的城市空间分割。$B\in \mathbb{R}^{N\times M}$表示分配规则，其中每个元素$b_{ij}$代表是网格单元$i$属于区域$j$的可能性，而M是区域数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;外部因素(天气)$e_t \in \mathbb{R}^{l_e}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;土地特征$P\in \mathbb{R}^{l_f\times H\times W}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsf84jc082j60mm0a244n02.jpg&#34; alt=&#34;image-20210713124622097&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;methodology&#34;&gt;METHODOLOGY&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsf9qn9ga0j319c0dy11g.jpg&#34; alt=&#34;image-20210713134220630&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfcs95lkrj30mq072q3v.jpg&#34; alt=&#34;image-20210713152655526&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;backbone-network&#34;&gt;Backbone Network&lt;/h3&gt;
+&lt;p&gt;我们采用了SENet(Squeeze-and-Excitation Network, SENet)来融合每一层小的(即局部的)接受域内的空间和通道信息，该方法已经被证明能够有效地产生每个网格单元的特征。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfa2gr3hbj30mk0gk40k.jpg&#34; alt=&#34;image-20210713135335131&#34; style=&#34;zoom:40%;&#34; /&gt;
+$$
+z_c=F_{sq}(u_c)=\frac{1}{W\times H}\sum _{i=1}^{W}\sum _{j=1}^Hu_c(i,j) \&lt;br&gt;
+s=F_{ex}(z,W)=\sigma (W_2\delta(W_1z)) \&lt;br&gt;
+\tilde{x}_c=F_{scale}(u_c, s_c)=s_c\cdot u_c
+$$&lt;/p&gt;
+&lt;h3 id=&#34;global-relation-module&#34;&gt;Global Relation Module&lt;/h3&gt;
+&lt;p&gt;提取完网格单元的局部特征后，本文提出了一个全局关系模块，相比现有方法能更高效地捕获全局空间关系。受图像关系推理网络的启发，提出在更高的语义级别（即区域级别）执行关系推理。该语义级别更易于捕获全局关系。此外，基于最小割（Minimum Cut）理论为区域划分设计了无监督损失。&lt;/p&gt;
+&lt;p&gt;全局关系网络的整个流程包括四个主要阶段：区域划分，空间转换，消息传递（关系推断），反空间转换和预测。s&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfacvq55rj319a0a00vf.jpg&#34; alt=&#34;image-20210713140344902&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;region-partition&#34;&gt;Region Partition&lt;/h4&gt;
+&lt;p&gt;简单通过线性变换不能保证相邻网格单元在分割当中的临近性。为此，使用最小割理论去约束分配矩阵的生成。
+$$
+B=\text{softmax}(\delta(X^h)), X^h\in \mathbb{R}^{N\times C}\quad B\in \mathbb{R}^{N\times M}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_c = -\frac{\text{Tr}(\mathbf{B}^T\tilde{\mathbf{A}}^g\mathbf{B})}{\text{Tr}(\mathbf{B}^T\tilde{\mathbf{D}}^g\mathbf{B})}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+a = \frac{\mathbf{B}^{T} \mathbf{B}}{\left|\mathbf{B}^{T} \mathbf{B}\right|_{F}}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+b = \frac{\mathbf{I}_{M}}{\sqrt{M}}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_m = -\mathcal{L}_c+||a-b||_F
+$$
+$\mathbf{\hat{B}}$ assigns exactly $N/M$ grid cells to each region&lt;/p&gt;
+&lt;h4 id=&#34;space-conversion&#34;&gt;Space Conversion&lt;/h4&gt;
+&lt;p&gt;根据分配矩阵B，将局部网格单元特征聚合到区域空间中以获得区域特征，并生成区域间的连接关系（即区域网络的邻接矩阵）。
+$$
+H = B^T\phi(X^h), A^r = B^T\tilde{A}^gB, A\in\mathbb{R}^{N\times N}
+$$&lt;/p&gt;
+&lt;h4 id=&#34;message-passing-between-regions&#34;&gt;Message Passing between Regions&lt;/h4&gt;
+&lt;p&gt;由于区域以图的形式连接，因此利用图卷积网络在区域级别执行消息传递，来进行全局关系的建模。
+$$
+\hat{A}^r = A_r - \text{diag}(A^r),\tilde{A}^r = \hat{D}^{-\frac{1}{2}}\hat{A}^r\hat{D}^{-\frac{1}{2}}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+H^{&#39;}=f_{\text{GCN}}(\tilde{A}^r,H)=\tilde{A}^r\text{ReLU}(\tilde{A}^rHW_1)W_2
+$$&lt;/p&gt;
+&lt;h4 id=&#34;reverse-projection&#34;&gt;Reverse projection&lt;/h4&gt;
+&lt;p&gt;当得到全局关系建模后的高阶区域特征后，根据分配矩阵B进行反投影到原网格空间，得到全局关系增强的网格单元特征。最后，把该全局关系增强的网格单元特征输入到预测器进行预测。
+$$
+X^g=B\theta(H^{&#39;}) \in \mathbb{R}^{N\times C}
+$$&lt;/p&gt;
+&lt;h4 id=&#34;reshape--predict&#34;&gt;Reshape &amp;amp; Predict&lt;/h4&gt;
+&lt;p&gt;首先Reshape成$\mathbb{R}^{C\times H\times W}$，然后使用$1\times 1$卷积到$\mathbb{R}^{K\times H\times W}$做残差连接&lt;/p&gt;
+&lt;h3 id=&#34;meta-learner&#34;&gt;Meta Learner&lt;/h3&gt;
+&lt;p&gt;通常，具有相似地块功能的网格单元将对外部因素具有相似的响应。基于此观察，本文设计了一种新颖的元学习器，以基于矩阵分解对外部因素产生特定于网格单元的影响。给定地块特征和外部特征，目标是计算每一个网格的响应。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfc0owl23j30no09wgnp.jpg&#34; alt=&#34;image-20210713150103560&#34; style=&#34;zoom:50%;&#34; /&gt;
+$$
+O^m = f_{\text{ML}}(P, e_t) \in \mathbb{R}^{D\times H\times W}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;optimization&#34;&gt;Optimization&lt;/h3&gt;
+&lt;p&gt;$$
+\mathcal{L}=\mathcal{L}_{MAE} + \alpha \mathcal{L}_m
+$$&lt;/p&gt;
+&lt;h2 id=&#34;evaluation&#34;&gt;EVALUATION&lt;/h2&gt;
+&lt;h3 id=&#34;论文使用的数据集&#34;&gt;论文使用的数据集&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2021/07/20/YeDo36xUQ5cHvqp.png&#34; alt=&#34;image-20210720100740572&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;实验结果&#34;&gt;实验结果&lt;/h3&gt;
+&lt;p&gt;不同方法在Taxi BJ数据集上的实验效果对比：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfcibndtfj30na0gsn0d.jpg&#34; alt=&#34;image-20210713151801457&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gsfclkuj85j319i0ek0xi.jpg&#34; alt=&#34;image-20210713152111431&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;论文在此还实验分析了Backbone Network、GloNet、元学习器的有效性在此不再赘述。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2021/07/20/XjbCniMgs69rDpu.png&#34; alt=&#34;image-20210720100851086&#34; style=&#34;zoom: 80%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2021/07/20/8thuUoEFTpgy1re.png&#34; alt=&#34;image-20210720100939096&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结论&#34;&gt;结论&lt;/h2&gt;
+&lt;p&gt;面向智慧城市建设中精细化管理需求，本文提出一种时空关系网络来解决细粒度城市流量预测问题，对于城市的交通规划、公共安全、社会治理都有着非常重要的作用和意义。针对研究问题的两大挑战，本文方法构建了全局关系网络和一种轻量元学习网络，实现对空间（局部和全局）、时间依赖关系以及外部关系（例如天气和兴趣点）的高效学习，并在两个现实世界的细粒度数据集上进行实验，验证了所提方法的有效性。与现有方法相比，本文所提方法可以提供高分辨率流量预测数据，同时模型参数量不受流量粒度变化影响，避免了参数爆炸问题。因此该方法便于移动部署，拥有广泛的应用价值。考虑到落地应用中的实时监测预警需求，未来研究工作中，我们尝试将其扩展至在线学习框架中，进一步提升其应用价值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考文献&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] Liang Y, Ouyang K, Sun J, et al. Fine-Grained Urban Flow Prediction[C]//Proceedings of the Web Conference 2021. 2021: 1833-1845.&lt;/p&gt;
+&lt;p&gt;[2] &lt;a href=&#34;https://blog.csdn.net/zuiyishihefang/article/details/114958537&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;WWW2021论文速递：细粒度城市流量预测&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] &lt;a href=&#34;https://zhuanlan.zhihu.com/p/368740161&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;WWW2021：细粒度城市流量预测&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4] &lt;a href=&#34;https://zhuanlan.zhihu.com/p/65459972&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;﻿最后一届ImageNet冠军模型：SENet&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>轨迹数据挖掘:概述</title>
