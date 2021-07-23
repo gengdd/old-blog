@@ -1,0 +1,1280 @@
+<!DOCTYPE html><html lang="zh" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Dongdong Geng" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Fine-Grained Urban Flow Prediction" />
+
+  
+  <link rel="alternate" hreflang="zh" href="https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?45fb2fbf513074ab942cb6db74c7e8ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="GDD" />
+  <meta property="og:url" content="https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/" />
+  <meta property="og:title" content="细粒度城市流量预测 | GDD" />
+  <meta property="og:description" content="Fine-Grained Urban Flow Prediction" /><meta property="og:image" content="https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="zh" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-07-23T23:02:53&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-07-23T23:02:53&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/"
+  },
+  "headline": "细粒度城市流量预测",
+  
+  "datePublished": "2021-07-23T23:02:53+08:00",
+  "dateModified": "2021-07-23T23:02:53+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Dongdong Geng"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "GDD",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Fine-Grained Urban Flow Prediction"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>细粒度城市流量预测 | GDD</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2ffe766b1ecc96d75e8377645157450d" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>细粒度城市流量预测</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Dongdong Geng</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 23, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+<a class="btn btn-outline-primary btn-page-header" href="/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <center><div style="font-family:华文楷体;font-size:30pt">细粒度城市流量预测</div></center>
+<div>
+<div style="width:60px;float:left; font-family:方正公文黑体;">摘要:</div> 
+<div style="overflow:hidden; font-family:华文楷体;">城市流量预测对智慧城市在交通管理和风险评估等方面有很大的帮助。我们将城市流量预测由粗粒度扩展到细粒度，提出了以下具体的挑战：(1)细粒度数据中观测网格间的转移至关重要，这使得在全域范围内捕获网格单元之间的空间依赖性变得更加复杂(2)在大量独立网格单元中学习外部因素的影响具有挑战。我们提出了一个时空关系网络(Spatio-Temporal Relation Network，STRN)来预测细粒度的城市流量。首先，使用骨干网络来学习每个单元格的高层次表示。其次，我们提出了一个全局关系模块(Global Relation Module，GloNet)，与现有方法相比，该模块可以更有效地捕获全局空间依赖关系。第三，我们设计了一个元学习器，将外部因素和土地功能(如POI密度)作为输入以处理元知识并提高模型性能。</div>
+</div>
+<h2 id="introduction">INTRODUCTION</h2>
+<p>在基于网格的城市流量预测中，必须考虑的一个关键属性是时空(ST)相关性：网格单元的未来状态取决于自身和邻居的历史状态。此外，城市流量也受到天气条件和事件等外部因素的影响。例如，大雪可以大大减少许多地区的交通流量。许多现有的研究使用卷积神经网络(CNNs)作为骨干结构来提取空间上的近距离依赖关系；时间依赖关系(例如，最近的、每天的和每周的级别)是使用不同的子分支来捕获的。同时，通过一些人工设计的子网对外部因素的影响进行编码。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsf4yn598oj30lu0a046e.jpg" alt="image-20210713105637603" style="zoom:45%;" /></p>
+<p>对于特定的城市，增加粒度(例如:600m→150m)相当于获得更高的分辨率(如32×32→128×128)。因此，我们可以交替使用“高分辨率”和“细粒度”。尽管之前的研究在粗粒度级别(如32×32)上取得了很好的结果，但由于以下具体挑战，他们的架构并不适合预测细粒度的城市流量:</p>
+<ol>
+<li>全局空间依赖性
+<ol>
+<li>CNN多层堆叠</li>
+<li>膨胀卷积</li>
+<li>DeepSTN+：显式建模所有成对关系网格网格，引入大量参数</li>
+</ol>
+</li>
+<li>外部因素与土地功能
+<ol>
+<li>之前的研究如DeepST和ST-ResNet使用子网将外部因素的影响映射到每个网格单元上，这种方法扩展到细粒度将增大大量参数</li>
+<li>使用外部因素只学习不同类型POI特征的权重，而忽略了外部因素对不同网格单元的影响存在显著差异</li>
+</ol>
+</li>
+</ol>
+<p>我们提出了一个用于细粒度城市流预测的时空关系网络(STRN)，STRN遵循CPT范式对三种时间依赖进行建模，并使用基于CNN的主干来提取高层ST特征。为了解决上述挑战，我们设计了如下两个具体模块：</p>
+<ol>
+<li>引入一个新的结构(GloNet)来捕获全局空间依赖性
+<ol>
+<li>在更高级的语义层(即区域层)上执行关系推断，该语义层对捕获全局关系更友好</li>
+</ol>
+</li>
+<li>提出了一种基于矩阵分解的元学习器来应用随时变化的外部因素响应</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsf7r9kwqzj30n40c076o.jpg" alt="image-20210713123338325" style="zoom:40%;" /></p>
+<h2 id="formulation">FORMULATION</h2>
+<ol>
+<li>
+<p>网格单元$N=H\times W$</p>
+<p>将感兴趣的区域（例如一个城市地区）均匀地划分为一个$H\times W$栅格，栅格中共有$HW$个网格单元</p>
+</li>
+<li>
+<p>城市流量$X_t \in \mathbb{R}^{K\times H \times W}$</p>
+</li>
+<li>
+<p>区域(Region)$B\in \mathbb{R}^{N\times M}$</p>
+<p>土地使用和功能赋予不规则区域以不同的地理语义。与基于网格的方法相比，它为我们提供了更自然和语义上的城市空间分割。$B\in \mathbb{R}^{N\times M}$表示分配规则，其中每个元素$b_{ij}$代表是网格单元$i$属于区域$j$的可能性，而M是区域数量</p>
+</li>
+<li>
+<p>外部因素(天气)$e_t \in \mathbb{R}^{l_e}$</p>
+</li>
+<li>
+<p>土地特征$P\in \mathbb{R}^{l_f\times H\times W}$</p>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsf84jc082j60mm0a244n02.jpg" alt="image-20210713124622097" style="zoom:40%;" /></p>
+<h2 id="methodology">METHODOLOGY</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsf9qn9ga0j319c0dy11g.jpg" alt="image-20210713134220630" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfcs95lkrj30mq072q3v.jpg" alt="image-20210713152655526" style="zoom:40%;" /></p>
+<h3 id="backbone-network">Backbone Network</h3>
+<p>我们采用了SENet(Squeeze-and-Excitation Network, SENet)来融合每一层小的(即局部的)接受域内的空间和通道信息，该方法已经被证明能够有效地产生每个网格单元的特征。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfa2gr3hbj30mk0gk40k.jpg" alt="image-20210713135335131" style="zoom:40%;" />
+$$
+z_c=F_{sq}(u_c)=\frac{1}{W\times H}\sum _{i=1}^{W}\sum _{j=1}^Hu_c(i,j) \<br>
+s=F_{ex}(z,W)=\sigma (W_2\delta(W_1z)) \<br>
+\tilde{x}_c=F_{scale}(u_c, s_c)=s_c\cdot u_c
+$$</p>
+<h3 id="global-relation-module">Global Relation Module</h3>
+<p>提取完网格单元的局部特征后，本文提出了一个全局关系模块，相比现有方法能更高效地捕获全局空间关系。受图像关系推理网络的启发，提出在更高的语义级别（即区域级别）执行关系推理。该语义级别更易于捕获全局关系。此外，基于最小割（Minimum Cut）理论为区域划分设计了无监督损失。</p>
+<p>全局关系网络的整个流程包括四个主要阶段：区域划分，空间转换，消息传递（关系推断），反空间转换和预测。s</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfacvq55rj319a0a00vf.jpg" alt="image-20210713140344902" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h4 id="region-partition">Region Partition</h4>
+<p>简单通过线性变换不能保证相邻网格单元在分割当中的临近性。为此，使用最小割理论去约束分配矩阵的生成。
+$$
+B=\text{softmax}(\delta(X^h)), X^h\in \mathbb{R}^{N\times C}\quad B\in \mathbb{R}^{N\times M}
+$$</p>
+<p>$$
+\mathcal{L}_c = -\frac{\text{Tr}(\mathbf{B}^T\tilde{\mathbf{A}}^g\mathbf{B})}{\text{Tr}(\mathbf{B}^T\tilde{\mathbf{D}}^g\mathbf{B})}
+$$</p>
+<p>$$
+a = \frac{\mathbf{B}^{T} \mathbf{B}}{\left|\mathbf{B}^{T} \mathbf{B}\right|_{F}}
+$$</p>
+<p>$$
+b = \frac{\mathbf{I}_{M}}{\sqrt{M}}
+$$</p>
+<p>$$
+\mathcal{L}_m = -\mathcal{L}_c+||a-b||_F
+$$
+$\mathbf{\hat{B}}$ assigns exactly $N/M$ grid cells to each region</p>
+<h4 id="space-conversion">Space Conversion</h4>
+<p>根据分配矩阵B，将局部网格单元特征聚合到区域空间中以获得区域特征，并生成区域间的连接关系（即区域网络的邻接矩阵）。
+$$
+H = B^T\phi(X^h), A^r = B^T\tilde{A}^gB, A\in\mathbb{R}^{N\times N}
+$$</p>
+<h4 id="message-passing-between-regions">Message Passing between Regions</h4>
+<p>由于区域以图的形式连接，因此利用图卷积网络在区域级别执行消息传递，来进行全局关系的建模。
+$$
+\hat{A}^r = A_r - \text{diag}(A^r),\tilde{A}^r = \hat{D}^{-\frac{1}{2}}\hat{A}^r\hat{D}^{-\frac{1}{2}}
+$$</p>
+<p>$$
+H^{'}=f_{\text{GCN}}(\tilde{A}^r,H)=\tilde{A}^r\text{ReLU}(\tilde{A}^rHW_1)W_2
+$$</p>
+<h4 id="reverse-projection">Reverse projection</h4>
+<p>当得到全局关系建模后的高阶区域特征后，根据分配矩阵B进行反投影到原网格空间，得到全局关系增强的网格单元特征。最后，把该全局关系增强的网格单元特征输入到预测器进行预测。
+$$
+X^g=B\theta(H^{'}) \in \mathbb{R}^{N\times C}
+$$</p>
+<h4 id="reshape--predict">Reshape &amp; Predict</h4>
+<p>首先Reshape成$\mathbb{R}^{C\times H\times W}$，然后使用$1\times 1$卷积到$\mathbb{R}^{K\times H\times W}$做残差连接</p>
+<h3 id="meta-learner">Meta Learner</h3>
+<p>通常，具有相似地块功能的网格单元将对外部因素具有相似的响应。基于此观察，本文设计了一种新颖的元学习器，以基于矩阵分解对外部因素产生特定于网格单元的影响。给定地块特征和外部特征，目标是计算每一个网格的响应。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfc0owl23j30no09wgnp.jpg" alt="image-20210713150103560" style="zoom:50%;" />
+$$
+O^m = f_{\text{ML}}(P, e_t) \in \mathbb{R}^{D\times H\times W}
+$$</p>
+<h3 id="optimization">Optimization</h3>
+<p>$$
+\mathcal{L}=\mathcal{L}_{MAE} + \alpha \mathcal{L}_m
+$$</p>
+<h2 id="evaluation">EVALUATION</h2>
+<h3 id="论文使用的数据集">论文使用的数据集</h3>
+<p><img src="https://i.loli.net/2021/07/20/YeDo36xUQ5cHvqp.png" alt="image-20210720100740572" style="zoom:50%;" /></p>
+<h3 id="实验结果">实验结果</h3>
+<p>不同方法在Taxi BJ数据集上的实验效果对比：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfcibndtfj30na0gsn0d.jpg" alt="image-20210713151801457" style="zoom:40%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gsfclkuj85j319i0ek0xi.jpg" alt="image-20210713152111431" style="zoom:80%;" /></p>
+<p>论文在此还实验分析了Backbone Network、GloNet、元学习器的有效性在此不再赘述。</p>
+<p><img src="https://i.loli.net/2021/07/20/XjbCniMgs69rDpu.png" alt="image-20210720100851086" style="zoom: 80%;" /></p>
+<p><img src="https://i.loli.net/2021/07/20/8thuUoEFTpgy1re.png" alt="image-20210720100939096" style="zoom:80%;" /></p>
+<h2 id="结论">结论</h2>
+<p>面向智慧城市建设中精细化管理需求，本文提出一种时空关系网络来解决细粒度城市流量预测问题，对于城市的交通规划、公共安全、社会治理都有着非常重要的作用和意义。针对研究问题的两大挑战，本文方法构建了全局关系网络和一种轻量元学习网络，实现对空间（局部和全局）、时间依赖关系以及外部关系（例如天气和兴趣点）的高效学习，并在两个现实世界的细粒度数据集上进行实验，验证了所提方法的有效性。与现有方法相比，本文所提方法可以提供高分辨率流量预测数据，同时模型参数量不受流量粒度变化影响，避免了参数爆炸问题。因此该方法便于移动部署，拥有广泛的应用价值。考虑到落地应用中的实时监测预警需求，未来研究工作中，我们尝试将其扩展至在线学习框架中，进一步提升其应用价值。</p>
+<p><strong>参考文献</strong></p>
+<p>[1] Liang Y, Ouyang K, Sun J, et al. Fine-Grained Urban Flow Prediction[C]//Proceedings of the Web Conference 2021. 2021: 1833-1845.</p>
+<p>[2] <a href="https://blog.csdn.net/zuiyishihefang/article/details/114958537" target="_blank" rel="noopener">WWW2021论文速递：细粒度城市流量预测</a></p>
+<p>[3] <a href="https://zhuanlan.zhihu.com/p/368740161" target="_blank" rel="noopener">WWW2021：细粒度城市流量预测</a></p>
+<p>[4] <a href="https://zhuanlan.zhihu.com/p/65459972" target="_blank" rel="noopener">﻿最后一届ImageNet冠军模型：SENet</a></p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">时空数据挖掘</a>
+  
+  <a class="badge badge-light" href="/tag/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e7%bb%86%e7%b2%92%e5%ba%a6%e5%9f%8e%e5%b8%82%e6%b5%81%e9%87%8f%e9%a2%84%e6%b5%8b&amp;body=https://gengdd.github.io/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://gengdd.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu4b9c718166280bb42d9325f20dee7c58_11030_270x270_fill_lanczos_center_2.png" alt="Dongdong Geng"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://gengdd.github.io/">Dongdong Geng</a></h5>
+      <h6 class="card-subtitle">Master of Traffic Engineering</h6>
+      <p class="card-text">My research interests include traffic engineering, intelligent transportation and artificial intelligence.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gengdd" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
