@@ -1,0 +1,1320 @@
+<!DOCTYPE html><html lang="zh" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Dongdong Geng" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Spatio-Temporal Inception Graph Convolutional Networks for Skeleton-Based Action Recognition" />
+
+  
+  <link rel="alternate" hreflang="zh" href="https://gengdd.github.io/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?45fb2fbf513074ab942cb6db74c7e8ee";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://gengdd.github.io/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="GDD" />
+  <meta property="og:url" content="https://gengdd.github.io/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/" />
+  <meta property="og:title" content="基于骨架数据的时空Inception图卷积动作识别 | GDD" />
+  <meta property="og:description" content="Spatio-Temporal Inception Graph Convolutional Networks for Skeleton-Based Action Recognition" /><meta property="og:image" content="https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="zh" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-06T22:00:16&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-06T22:00:16&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gengdd.github.io/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/"
+  },
+  "headline": "基于骨架数据的时空Inception图卷积动作识别",
+  
+  "datePublished": "2021-08-06T22:00:16+08:00",
+  "dateModified": "2021-08-06T22:00:16+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Dongdong Geng"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "GDD",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gengdd.github.io/media/icon_hu4b9c718166280bb42d9325f20dee7c58_11030_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Spatio-Temporal Inception Graph Convolutional Networks for Skeleton-Based Action Recognition"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>基于骨架数据的时空Inception图卷积动作识别 | GDD</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="891d121d7f669931e8ebe043286fee2a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>基于骨架数据的时空Inception图卷积动作识别</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Dongdong Geng</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 6, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+<a class="btn btn-outline-primary btn-page-header" href="/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAInception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <center><div style="font-size:20pt">Spatio-Temporal Inception Graph Convolutional Networks for Skeleton-Based Action Recognition</div></center>
+<div>
+<div style="width:60px;float:left; font-family:方正公文黑体;">摘要:</div> 
+<div style="overflow:hidden; font-family:华文楷体;">随着深度传感器的普及，基于骨架的人体动作识别引起了广泛关注。最近，图卷积网络(GCN)由于其强大的图形数据建模能力而被广泛用于这项任务。邻接图的拓扑结构是建模输入骨架相关性的关键因素。因此，以前的方法主要关注于图拓扑的设计/学习。但一旦拓扑结构被学习，网络的每一层中只存在一个单一的尺度特征和一个变换。许多在卷积神经网络(CNN)中被证明非常有效的见解，如多尺度信息和多组变换，尚未在GCN中进行研究。原因是由于图形结构的骨架数据与传统的图像/视频数据之间的差距，将这些见解嵌入GCN非常具有挑战性。为了克服这一差距，我们在GCNs中重新设计了用于骨架序列处理的split-transform-merge策略。具体来说，我们设计了一个简单且高度模块化的图形卷积网络架构，用于基于骨架的动作识别。我们的网络是通过重复一个模型块来构建的，该模型块聚集了来自空间和时间路径的多粒度信息。大量的实验表明，我们的网络性能优于最先进的方法，只需1/5的参数和1/10的FLOPs，就有显著的优势。</div>
+</div>
+<h2 id="introduction">INTRODUCTION</h2>
+<p>人类行为识别因其潜在的应用前景而受到广泛关注。近年来，基于骨架的动作识别得到了广泛的研究，因为骨架数据传递了人体运动的紧凑信息，并且对动态环境（如视点变化、遮挡和复杂背景）具有很强的适应性。由于骨架数据自然位于非欧几里德空间，关节作为顶点，它们在人体内的连接作为边缘，因此基于CNN和RNN的方法无法充分利用骨架数据的图形结构中传递的丰富信息。</p>
+<p>最近，图卷积网络以其处理图形数据的优越能力被引入基于骨架的动作识别，并取得了最先进的性能。这些方法大多侧重于图拓扑的设计/学习。那些基于GCN的backbone在从不同尺度提取和合成信息以及从不同层次的不同路径进行转换方面存在固有的局限性。</p>
+<p>直观地说，CNN设计理念中的许多见解可以集成到基于GCN的主干网络中。</p>
+<ul>
+<li>输入可以通过一些低维嵌入或标识映射（GoogLeNet、ResNeXt、ResNet）分成不同的路径</li>
+<li>每个路径可以应用不同的transformations（GoogLeNet，ResNeXt）</li>
+<li>所有路径的输出都可以通过串联或求和进行聚合（ResNet、ResNeXt、GoogLeNet、DenseNet）</li>
+</ul>
+<p>然而，由于骨架数据的图结构，将这些理念嵌入GCN非常具有挑战性。例如，对于多尺度空间处理，不需要在CNN中使用多个内核大小，GCN需要针对不同阶跃点连接的定制操作。对于多视图时间处理（位置和运动），仍然不涉及为骨架序列图卷积的运动特征。事实上，许多生物学研究表明，灵长类视觉系统中20%的细胞对动态运动变化有反应，但对空间细节不敏感。</p>
+<p>在本文中，我们采用了CNN中的重复层策略，并重新设计了GCN中的分割-变换-合并策略，用于每一层的空间和时间骨架序列处理。对于每一层，输入分为三条路径：空间路径用于空间特征，时间路径用于序列特征和残差连接用于从用输入特征。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0geyk4s6j30ff07mmxd.jpg" alt="image-20210731212911027" style="zoom:80%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0gf2u0gzj30ig09q74y.jpg" alt="image-20210731212925742" style="zoom:80%;" /></p>
+<p>空间路径（空间Inception）进一步分为四个分支。我们使用1-4阶邻接采样作为带1-4跳连接的图变换集。然后使用1×1卷积、批归一化和ReLU的特定图形变换。时间路径（时间Inception）由两组变换组成。一组是连续帧中相同关节位置特征的直接图卷积，另一组是连续帧中相同关节运动特征的图卷积。值得注意的是，这是首次将关节的运动特征用于基于骨架的动作识别。最后，在合并阶段，首先对空间路径和时间路径的输出进行级联，并使用1×1卷积进行融合。然后，三条路径的特征通过求和进行聚合。整个块因其与CNN中的Inception模块相似而被命名为时空Inception模块。</p>
+<p>为了验证我们提出的时空Inception图卷积网络（STIGCN）用于基于骨架的动作识别的优越性，在两个大规模数据集上进行了大量实验。我们的网络比最先进的方法有很大的优势，只有1/5的参数和1/10的FLOPs。此外，虽然其他方法依赖于双流管道，需要骨架数据和精心制作的骨骼数据作为输入，但我们的方法只需要原始骨架数据作为输入。</p>
+<ul>
+<li>我们提出了一种用于基于骨架的动作识别的图卷积主干结构，称为时空Inception图卷积网络。该网络克服了方法在从不同层次的不同路径提取和合成不同规模和转换信息方面的局限性</li>
+<li>为了克服CNN和GCN之间卷积运算的差距，我们在GCN中重新设计了用于骨架序列处理的分割变换合并策略</li>
+<li>我们的方法表明增加变换集的数量比简单地创建更宽的GCN更有效地获得精度。我们希望这一见解将有助于时空序列分析中基于GCN的主干的迭代</li>
+<li>在两个用于基于骨架的动作识别的大规模数据集上，所提出的网络比最先进的方法具有显著的优势，参数和FLOPs更少。将发布代码和预训练模型，以促进未来的相关研究。</li>
+</ul>
+<h2 id="related-work">RELATED WORK</h2>
+<h3 id="skeleton-based-action-recognition">Skeleton-Based Action Recognition</h3>
+<p>最近，GCNs被引入到基于骨架的动作识别中，并取得了最先进的性能。这些方法大多侧重于图拓扑的设计/学习。Yan等人首先引入GCNs对骨架数据进行建模，并构建了具有固定拓扑约束的预定义图。Shi等人提出通过参数化图来学习自适应图，然后使用卷积参数联合更新图。Gao等人引入了图的更大感受野的高阶近似，并通过解决稀疏回归问题来学习它。Peng等人试图通过NAS搜索不同层的不同图形。</p>
+<h3 id="backbone-convolutional-neural-networks">Backbone Convolutional Neural Networks</h3>
+<ul>
+<li>GoogLeNet</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0h7zh4lij30lz0bjmxy.jpg" alt="image-20210731215800024" style="zoom:50%;" /></p>
+<ul>
+<li>ResNet</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0h9b1csfj30hc06bt8u.jpg" alt="image-20210731215915147" style="zoom:70%;" /></p>
+<ul>
+<li>DenseNet</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0k0envikj30d709vwf7.jpg" alt="image-20210731233427289" style="zoom:67%;" /></p>
+<ul>
+<li>ResNeXT</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0ijv96ruj30bs070q3f.jpg" alt="image-20210731224358000" style="zoom:70%;" /></p>
+<ul>
+<li>LocalCNN</li>
+</ul>
+<h3 id="graph-convolutional-networks">Graph Convolutional Networks</h3>
+<p>GCN广泛用于不规则数据，例如社交网络和生物数据。关键的挑战是定义图上的卷积，这很困难，因为图数据是无序的。GCN的构建主要空间视角或谱域视角。空间方法直接对图形顶点及其邻域执行卷积，然后根据手动设计的规则对输出进行规格化。谱域GCN通过图拉普拉斯方法将图形信号转换到谱域，然后在谱域上应用滤波器。</p>
+<h2 id="approach">APPROACH</h2>
+<h3 id="motivation">Motivation</h3>
+<p>现有方法的主干网络在从不同层次的不同路径提取和合成不同尺度和变换信息方面具有内在的局限性。</p>
+<h3 id="instantiation">Instantiation</h3>
+<p>定义无向图$\mathcal{G}={\mathcal{V},\mathcal{E},A}$</p>
+<p>切比雪夫图卷积定义如下：
+$$
+F_{\text {out }}=\sum_{r=0}^{R} \theta_{r}^{\prime} T_{r}(\hat{L}) F_{\text {in }},
+$$</p>
+<p>$$
+T_{r}(\hat{L})=2 \hat{L} T_{r-1}(\hat{L})-T_{r-2}(\hat{L}^{\prime})
+$$</p>
+<h4 id="spatial-inception">Spatial Inception</h4>
+<p>每个Inception路径有三个部分：采样、卷积和融合。</p>
+<ol>
+<li>
+<p>Adjacency Sampling</p>
+<p>受图卷积的谱公式的启发，我们将特征采样模块重新表示为骨架表示和定义为切比雪夫多项式的图变换之间的矩阵乘法运算。
+$$
+T_{0}=I
+$$</p>
+<p>$$
+T_{1}=\hat{L}
+$$</p>
+<p>$$
+T_{2}=2 \hat{L}^{2}-I
+$$</p>
+<p>$$
+T_{3}=4 \hat{L}^{3}-3 \hat{L}
+$$</p>
+<p>$$
+T_{4}=8 \hat{L}^{4}-8 \hat{L}^{2}+I
+$$</p>
+<p>借鉴自适应图拓扑方法，我们将层相关偏差和数据相关偏差应用于转换矩阵，以实现更灵活的跳连接。除自适应偏差外，预定义变换矩阵的其他参数在训练期间是固定的。</p>
+</li>
+<li>
+<p>Convolution Module</p>
+<p>图卷积模块用于提取各个尺度的图特征。它由1×1卷积层、批量归一化层和ReLU层组成。</p>
+</li>
+<li>
+<p>Fusion Module</p>
+<p>引入特征融合模块，通过综合所有路径的输出，生成更具鲁棒性和区分性的表示。在本文中，特征融合模块形成为所有输出的级联层，然后是具有批量归一化和ReLU的1×1卷积层。将1×1卷积层的输出通道数设置为输入通道数，以保持基数。</p>
+</li>
+</ol>
+<h4 id="temporal-inception">Temporal Inception</h4>
+<p>一个分支直接将连续帧中相同关节的特征作为位置特征处理的输入。另一个分支将输入到运动采样模块以进行运动特征处理。这是首次将关节的运动特征用于基于骨架的动作识别。</p>
+<ol>
+<li>
+<p>Motion Sampling</p>
+<p>在本文中，我们设计了一个运动采样模块来显式地建模二阶时间信息，称为运动信息。特别地，运动信息被定义为连续帧之间的差。</p>
+<p>运动信息也可以看作是骨架序列的光流。骨架数据的关节类似于RGB视频中观察到的对象，光流计算为连续帧之间对象的相对运动。因此，利用上述运动采样操作进行运动特征处理是自然的。</p>
+</li>
+<li>
+<p>Convolution and Fusion</p>
+<p>我们使用3×1核进行时间卷积，其中核大小3对应于时间跨度，在输入序列中的相邻特征映射上构造时间连接。特征融合模块将两个时间分支的输出连接起来，然后进行1×1卷积、批量归一化和ReLU。</p>
+</li>
+</ol>
+<h4 id="spatio-temporal-fusion">Spatio-Temporal Fusion</h4>
+<p>在最后的合并阶段，空间路径、时间路径和残差路径的输出通过求和进行聚合。</p>
+<h3 id="network-architecture">Network Architecture</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0iwuoxcej30lo04rmxt.jpg" alt="image-20210731225634147" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0izi345jj30ap0c975c.jpg" alt="image-20210731225900841" style="zoom:90%;" /></p>
+<h2 id="experiments">EXPERIMENTS</h2>
+<h3 id="datasets-and-evaluation-protocol">Datasets and Evaluation Protocol</h3>
+<ul>
+<li>NTU RGB+D</li>
+<li>Kinetics-Skeleton</li>
+</ul>
+<h3 id="implementation-details">Implementation Details</h3>
+<p>我们的框架是在PyTorch上实现的。所有实验都使用Nesterov动量为0.9的随机梯度下降。对于NTU RGB+D，批量大小为64，权重衰减为5e−4，初始学习率为0.1。在第30和40个Epoch，学习率除以10。训练过程在第50个Epoch结束。对于KineticsSkeleton，批量大小为128，Epoch为60。学习率在开始时设置为0.1，在第45和第50个时期除以10，权重衰减为1.5e−4。</p>
+<h3 id="comparison-with-state-of-the-art-methods">Comparison with State-of-the-Art Methods</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0j7mcj9hj30at0bxgme.jpg" alt="image-20210731230654325" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0j81r3xvj30az06rdg6.jpg" alt="image-20210731230719875" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="ablation-analysis">Ablation Analysis</h3>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://tva1.sinaimg.cn/large/008i3skNly1gt0j9x4jz6j30lr05eaah.jpg" alt="image-20210731230908425" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h2 id="conclusion">CONCLUSION</h2>
+<p>在本文中，我们提出了一种简单的图卷积主干结构，称为时空Inception图卷积网络，用于基于骨架的动作识别。它克服了以往方法从不同层次的不同路径中提取和合成不同尺度和变换信息的局限性。在两个大规模数据集上，所提出的网络比最先进的方法有显著的优势，参数和FLOPs更少。我们的方法表明，增加变换集的数量比简单地创建更宽的GCN更有效地获得精度。我们希望这一见解将有助于基于GCN的主干网在时空序列分析中的迭代。在未来，我们将探索更多类型的转换来设计图卷积构建块。</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e5%9f%ba%e4%ba%8e%e9%aa%a8%e6%9e%b6%e6%95%b0%e6%8d%ae%e7%9a%84%e6%97%b6%e7%a9%baInception%e5%9b%be%e5%8d%b7%e7%a7%af%e5%8a%a8%e4%bd%9c%e8%af%86%e5%88%ab&amp;body=https://gengdd.github.io/post/%E5%9F%BA%E4%BA%8E%E9%AA%A8%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E7%A9%BAinception%E5%9B%BE%E5%8D%B7%E7%A7%AF%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://gengdd.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu4b9c718166280bb42d9325f20dee7c58_11030_270x270_fill_lanczos_center_2.png" alt="Dongdong Geng"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://gengdd.github.io/">Dongdong Geng</a></h5>
+      <h6 class="card-subtitle">Master of Traffic Engineering</h6>
+      <p class="card-text">My research interests include traffic engineering, intelligent transportation and artificial intelligence.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gengdd" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/%E7%BB%86%E7%B2%92%E5%BA%A6%E5%9F%8E%E5%B8%82%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B/">细粒度城市流量预测</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
